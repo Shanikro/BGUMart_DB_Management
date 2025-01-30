@@ -58,6 +58,12 @@ class Dao(object):
         c.execute(stmt, params)
         return orm(c, self._dto_type)
 
+    def find_all_and_sord(self, coulmn): #return sorted objects by the parm
+        column_name = coulmn
+        c = self._conn.cursor()
+        c.execute('SELECT * FROM {} ORDER BY {}'.format(self._table_name, column_name))
+        return orm(c, self._dto_type)
+
     def delete(self, **keyvals):
         column_names = keyvals.keys()
         params = list(keyvals.values())

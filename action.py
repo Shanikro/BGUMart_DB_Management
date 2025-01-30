@@ -23,12 +23,13 @@ def get_quantity(id):
 
 def new_sale_or_supply(splittedline : list[str]):
     current_quantity = get_quantity(splittedline[0])
+    quantity_change = int(splittedline[1])
 
-    if current_quantity + splittedline[1] >= 0:
+    if current_quantity + quantity_change >= 0:
+
         # Update the product quantity
-        repo.products.execute_command("""
-                   UPDATE products SET quantity=? WHERE id=?""",
-                             (current_quantity + splittedline[1], splittedline[0]))
+        command = f"""UPDATE products SET quantity={current_quantity + quantity_change} WHERE id={splittedline[0]}"""
+        repo.execute_command(command)
 
         # Add new activitie
         add_activitie(splittedline)

@@ -8,7 +8,7 @@ def add_branche(splittedline : list[str]):
     location = splittedline[1]
     number_of_employees = int(splittedline[2])
 
-    new_branch = Employee(branch_id, location, number_of_employees)
+    new_branch = Branche(branch_id, location, number_of_employees)
 
     repo.branches.insert(new_branch)
 
@@ -17,7 +17,7 @@ def add_supplier(splittedline : list[str]):
     name = splittedline[1]
     contact = splittedline[2]
 
-    new_supplier = Employee(supplier_id, name, contact)
+    new_supplier = Supplier(supplier_id, name, contact)
 
     repo.suppliers.insert(new_supplier)
 

@@ -16,7 +16,7 @@ def add_product(splittedline : list[str]):
     pass
 
 def add_employee(splittedline : list[str]):
-    #TODO: insert employee
+    repo.
     pass
 
 adders = {  "B": add_branche,
@@ -26,11 +26,13 @@ adders = {  "B": add_branche,
 
 def main(args : list[str]):
     inputfilename = args[1]
+
     # delete the database file if it exists
     repo._close()
     # uncomment if needed
-    # if os.path.isfile("bgumart.db"):
-    #     os.remove("bgumart.db")
+    if os.path.isfile("bgumart.db"):
+        os.remove("bgumart.db")
+
     repo.__init__()
     repo.create_tables()
     with open(inputfilename) as inputfile:

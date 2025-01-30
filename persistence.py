@@ -4,31 +4,48 @@ from dbtools import Dao
  
 # Data Transfer Objects:
 class Employee(object):
-    #TODO: implement
-    pass
+    def __init__(self, id, name, salary, branche):
+        self.id = id
+        self.name = name
+        self.salary = salary
+        self.branche = branche
  
 class Supplier(object):
-    #TODO: implement
-    pass
+    def __init__(self, id, name, contact):
+        self.id = id
+        self.name = name
+        self.contact = contact
 
 class Product(object):
-    #TODO: implement
-    pass
+    def __init__(self, id, description, price, quantity):
+        self.id = id
+        self.description = description
+        self.price = price
+        self.quantity = quantity
 
 class Branche(object):
-    #TODO: implement
-    pass
+    def __init__(self, id, location, emploteesNumber):
+        self.id = id
+        self.location = location
+        self.emploteesNumber = emploteesNumber
 
 class Activitie(object):
-    #TODO: implement
-    pass
+    def __init__(self, productId, quantity, activitorId, date):
+        self.productId = productId
+        self.quantity = quantity
+        self.activitorId = activitorId
+        self.date = date
  
  
 #Repository
 class Repository(object):
     def __init__(self):
         self._conn = sqlite3.connect('bgumart.db')
-        #TODO: complete
+        self.employees = Employee(self._conn)
+        self.suppliers = Supplier(self._conn)
+        self.products = Product(self._conn)
+        self.branches = Branche(self._conn)
+        self.activities = Activitie(self._conn)
  
     def _close(self):
         self._conn.commit()

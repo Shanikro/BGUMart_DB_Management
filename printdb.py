@@ -39,11 +39,12 @@ def main():
                     JOIN branches AS b ON e.branche = b.id
                     LEFT JOIN 
                     (SELECT a.activator_id, SUM(a.quantity * p.price * -1) AS total_sales
-                    FROM products AS p
-                    JOIN activities AS a ON p.id = a.product_id
-                    GROUP BY a.activator_id) 
+                        FROM products AS p
+                        JOIN activities AS a ON p.id = a.product_id
+                        GROUP BY a.activator_id) 
                     AS sales_summary
-                    ON e.id = sales_summary.activator_id;
+                    ON e.id = sales_summary.activator_id
+                    ORDER BY e.name ASC;
                 """
     output = repo.execute_command(command)
     if output:
@@ -59,6 +60,7 @@ def main():
                         JOIN products AS p ON a.product_id = p.id
                         LEFT JOIN employees AS e ON a.activator_id = e.id
                         LEFT JOIN suppliers AS s ON a.activator_id = s.id
+                        ORDER BY a.date ASC;
                     """
 
     output = repo.execute_command(command)
